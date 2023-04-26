@@ -68,16 +68,13 @@
             $c_type = 'hat';
             $sql1 = "SELECT * FROM `clothes` WHERE user_id = '$user_id' AND c_type = '$c_type'";
             $result = $conn->query($sql1);
-           if($result){
-              #none
-            }else{
-              echo "Error: " . $sql1 . "<br>" . $conn->error;
+           if(!$result){
+            echo "Error: " . $sql1 . "<br>" . $conn->error;
             }
 
             if($result->num_rows > 0){ ?> 
     
         <?php while($row = $result->fetch_assoc()){   ?>
-          <?php echo $row; ?>
 
           <div class="clothes__item" id="<?php echo $row['c_id']; ?>">
           <div class="clothes__item-button">
