@@ -190,7 +190,13 @@ $uniqueArray = array_values(array_unique($data));
                 <h3 class="home__set-name">Set 1</h3>
                 <div class="home__set-images">
                   <?php 
-                  $sql4 = "select * from clothes where user_id = '$user_id'";
+                  $set=array();
+                  $set[] = "Pants"; 
+                  $set[] = "hat"; 
+                  $set[] = "Shoes"; 
+                  $set[] = "shirts"; 
+                  foreach ($set as $value) {
+                  $sql4 = "select * from clothes where user_id = '$user_id' and c_type = '$value'";
                   $result4 = $conn->query($sql4);
                   if (!$result4) {
                     die("Query failed: " . $conn->error);
@@ -198,16 +204,24 @@ $uniqueArray = array_values(array_unique($data));
                   
                   $numRows4 = $result4->num_rows;
                   
+                  
+                  $chk=0;
                   while ($row4 = $result4->fetch_assoc()) {
-                    $randomNumber = random_int(1, 2);
+                    
+                    $randomNumber = random_int(1, 3);
                     if($randomNumber==2){
+                        $chk++;
                       ?>
                        <div class="home__set-image">
                        <img src="upload_img/<?php echo $row4["image"];?>" alt="" />
                       </div>
                       <?php
+                      $img =$row4["image"];
                       }
+                      
                   }
+                 
+                }
                   ?>
                  
                   </div>
