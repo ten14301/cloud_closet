@@ -70,111 +70,7 @@ $uniqueArray = array_values(array_unique($data));
     </header>
     <main class="main">
       <div class="container">
-        <div class="home">
-          <div class="home__content">
-          <h2 class="home__title">My Collections</h2>
-            
-            <div class="home__sets">
-              
-                <?php 
-                $x=0;
-                foreach ($uniqueArray as $value) {
-                  ?>
-                  <div class="home__set">
-                  <h3 class="home__set-name"><?php echo $value; ?></h3>
-                  <div class="home__set-images">
-                  <?php
-                  $sql2 = "SELECT * from sets where user_id = '$user_id' and s_name = '$value' ";
-                  $result2 = $conn->query($sql2);
-                  if (!$result2) {
-                    die("Query failed: " . $conn->error);
-                }
-                  
-                  $numRows2 = $result2->num_rows;
-                  while ($row2 = $result2->fetch_assoc()) {
-                    $c_id=$row2["c_id"];
-                    $sql3="SELECT * from clothes where c_id = '$c_id'";
-                    $result3 = mysqli_query($conn, $sql3);
-                    $row3 = mysqli_fetch_assoc($result3);
-                    ?>
-                    
-                    <div class="home__set-image">
-                    <img src="upload_img/<?php echo $row3["image"];?>" alt="" />
-
-                    </div>
-                    <?php
-                    $numRows++;
-                    $x++;
-                }
-                ?>
-                
-                
-                </div>
-                </div>
-                <br>
-                <?php
-              }
-                ?>
-                <!--
-                <h3 class="home__set-name">Set 1</h3>
-                <div class="home__set-images">
-                  <div class="home__set-image">
-                    <img src="/closet/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                  <div class="home__set-image">
-                    <img src="/closet/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                  <div class="home__set-image">
-                    <img src="/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                  <div class="home__set-image">
-                    <img src="/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                </div>
-              </div>
-
-              <div class="home__set">
-                  <h3 class="home__set-name">Set 1</h3>
-                <div class="home__set-images">
-
-                  <div class="home__set-image">
-                    <img src="/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                  <div class="home__set-image">
-                    <img src="/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                  <div class="home__set-image">
-                    <img src="/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                  <div class="home__set-image">
-                    <img src="/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="home__set">
-                <h3 class="home__set-name">Set 1</h3>
-                <div class="home__set-images">
-                  <div class="home__set-image">
-                    <img src="/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                  <div class="home__set-image">
-                    <img src="/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                  <div class="home__set-image">
-                    <img src="/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                  <div class="home__set-image">
-                    <img src="/photo-1600269452121-4f2416e55c28.webp" alt="" />
-                  </div>
-                </div>
-              
-              -->
-              </div>
-            </div>
-          </div>
-          <div class="container">
+      <div class="container">
           <div class="home__content">
             <div class="home__title-button">
             <h2 class="home__title">Recommendation</h2>
@@ -228,9 +124,57 @@ $uniqueArray = array_values(array_unique($data));
                 </div>
               </div>
             </div>
+
+        <div class="home">
+          <div class="home__content">
+          <h2 class="home__title">My Collections</h2>
+            
+            <div class="home__sets">
+              
+                <?php 
+                $x=0;
+                foreach ($uniqueArray as $value) {
+                  ?>
+                  <div class="home__set">
+                  <h3 class="home__set-name"><?php echo $value; ?></h3>
+                  <div class="home__set-images">
+                  <?php
+                  $sql2 = "SELECT * from sets where user_id = '$user_id' and s_name = '$value' ";
+                  $result2 = $conn->query($sql2);
+                  if (!$result2) {
+                    die("Query failed: " . $conn->error);
+                }
+                  
+                  $numRows2 = $result2->num_rows;
+                  while ($row2 = $result2->fetch_assoc()) {
+                    $c_id=$row2["c_id"];
+                    $sql3="SELECT * from clothes where c_id = '$c_id'";
+                    $result3 = mysqli_query($conn, $sql3);
+                    $row3 = mysqli_fetch_assoc($result3);
+                    ?>
+                    
+                    <div class="home__set-image">
+                    <img src="upload_img/<?php echo $row3["image"];?>" alt="" />
+
+                    </div>
+                    <?php
+                    $numRows++;
+                    $x++;
+                }
+                ?>
+                
+                
+                </div>
+                </div>
+                <br>
+                <?php
+              }
+                ?>
+          
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+      
     </main>
     <script
       src="https://kit.fontawesome.com/508d35aa0b.js"
